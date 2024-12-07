@@ -1,0 +1,2 @@
+# Web-Scraping-Project-Scraping-Country-Data-and-Visualization
+This project demonstrates web scraping techniques to extract country data (name, capital, population, area) from ScrapeThisSite. It includes data cleaning, analysis (top populations, areas, density), and visualization with Matplotlib and Seaborn. The project also supports automation, API creation with Flask, and data export to CSV/Excel.
