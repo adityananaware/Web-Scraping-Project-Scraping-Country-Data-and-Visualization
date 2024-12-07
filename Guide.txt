@@ -1,0 +1,115 @@
+HOW TO RUN AND TEST THE SCRAPER
+
+This document provides a step-by-step guide to running and testing the web scraper for extracting country-related data.
+
+---
+
+1. PREREQUISITES
+Before you begin, ensure the following are installed on your system:
+- Python 3.7+
+- Required libraries: requests, beautifulsoup4, pandas, matplotlib, seaborn.
+
+Install dependencies using the following command:
+pip install -r requirements.txt
+
+---
+
+2. RUNNING THE SCRAPER
+
+The scraper extracts data from ScrapeThisSite (https://www.scrapethissite.com/pages/simple/). Follow these steps:
+
+2.1: Run the Scraper Script
+Execute the `scraping.py` script to start scraping:
+python scraping.py
+
+2.2: Outputs of the Scraper
+After running the script:
+- The scraped data will be saved as a CSV file named `countries_data.csv` in the project directory.
+- It will also display the first few rows of the scraped data as a preview.
+
+---
+
+3. TESTING THE SCRAPER
+
+To ensure the scraper works correctly, perform the following tests:
+
+3.1: Test for Connection Issues
+- If the website is unreachable, the script should handle the exception gracefully.
+- Simulate this by disconnecting your internet or altering the target URL in `scraping.py`.
+- Expected behavior: An error message should be logged, and the script should not crash.
+
+3.2: Test Data Extraction
+- Verify that all the expected fields (Name, Capital, Population, Area) are extracted correctly.
+- Check for missing or incorrectly formatted values in the output CSV file (`countries_data.csv`).
+
+3.3: Test Edge Cases
+- Scrape pages with unexpected HTML structures by modifying the target page's HTML locally or adding dummy data.
+- Ensure the script skips invalid data and logs errors where applicable.
+
+3.4: Validate Output Format
+- Open the output CSV file and confirm it contains all required fields.
+- Sample expected structure:
+  Name        | Capital       | Population | Area
+  ------------------------------------------------
+  Afghanistan | Kabul         | 35530081   | 652230
+  Albania     | Tirana        | 2930187    | 28748
+
+---
+
+4. ANALYZING AND VISUALIZING DATA
+
+4.1: Run the Analysis Script
+After scraping, you can analyze the data:
+python analysis.py
+
+4.2: Visualize the Data
+Generate charts and plots with:
+python visualize.py
+
+Plots include:
+- Top 10 countries by population.
+- Top 10 largest countries by area.
+- Population vs. Area scatter plot.
+
+---
+
+5. DEBUGGING AND LOGGING
+
+5.1: Logs
+The script logs progress and errors to the console. Add logging to a file if required by modifying the logging configuration in `scraping.py`.
+
+5.2: Common Errors
+1. ConnectionError: Occurs if the target website is unreachable.
+2. AttributeError: Happens if the website's structure changes. Update the selectors in the BeautifulSoup parsing logic.
+3. ValueError: If non-numeric values are found in numeric fields. Ensure proper cleaning with `pd.to_numeric(errors='coerce')`.
+
+---
+
+6. AUTOMATING TESTS
+
+For more robust testing, use Python’s unittest or pytest framework.
+
+Sample Unit Test
+Create a `test_scraping.py` file:
+import unittest
+import pandas as pd
+from scraping import scrape_data
+
+class TestScraper(unittest.TestCase):
+    def test_scrape_data(self):
+        data = scrape_data()
+        self.assertIsInstance(data, pd.DataFrame)  # Ensure output is a DataFrame
+        self.assertIn('Name', data.columns)       # Check for required columns
+        self.assertIn('Population', data.columns)
+        self.assertGreater(len(data), 0)          # Ensure data is not empty
+
+if __name__ == "__main__":
+    unittest.main()
+
+Run the tests:
+python -m unittest test_scraping.py
+
+---
+
+7. CONCLUSION
+After following these steps, you should have a fully functional scraper that extracts, processes, and visualizes country data. For further troubleshooting or enhancements, feel free to reach out or refer to the documentation.
