@@ -82,4 +82,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 For inquiries, open an issue or contact me at:  
-[Your Email Address]
+adityananaware2@gmail.com
