@@ -8,7 +8,6 @@ This project demonstrates web scraping techniques to extract country-related dat
 - **Data Analysis**: Analyzes top countries by population, area, and population density.
 - **Data Visualization**: Visualizes data using Matplotlib and Seaborn.
 - **Data Export**: Exports data to CSV/Excel formats.
-- 
 ## Technologies Used
 
 - Python
